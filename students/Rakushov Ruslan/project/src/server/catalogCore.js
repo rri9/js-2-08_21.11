@@ -1,4 +1,3 @@
-// import fs from "fs";
 const fs = require("fs");
 
 const catalogCore = {
@@ -17,5 +16,4 @@ const catalogCore = {
   },
 };
 
-// export default catalogCore;
 module.exports = catalogCore;

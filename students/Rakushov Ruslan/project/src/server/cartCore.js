@@ -1,13 +1,8 @@
-// import fs from "fs";
-// import catalogCore from "./catalogCore";
-// import logger from "./logger.js";
 const catalogCore = require("./catalogCore");
 const logger = require("./logger");
 
 const cartCore = {
   add(data, id) {
-    console.log("in cartCore.js add");
-    debugger;
     const cart = JSON.parse(data);
     let find = cart.contents.find(item => item.id === id);
     if (find) {
@@ -38,7 +33,6 @@ const cartCore = {
   },
 };
 
-// export default cartCore;
 module.exports = cartCore;
 
 function recountCart(cart) {
