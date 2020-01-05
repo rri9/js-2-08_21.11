@@ -12,7 +12,7 @@ let cartItem = {
     </div>
     <div class="right-block">
       <p class="product-price">{{item.quantity * item.price}}</p>
-      <button class="del-btn" :data-id="item.id" @click="$parent.delItemFromCart">&times;</button>
+      <button id="delItemFromCart" class="del-btn" :data-id="item.id" @click="$parent.changeItemsInCart">&times;</button>
     </div>
   </div>
   `

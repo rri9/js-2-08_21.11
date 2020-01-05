@@ -1,13 +1,12 @@
-import cartItem from "./cartItem"
-import cartEmpty from "./cartEmpty"
-import search from "./search"
+import cartItem from "./cartItem";
+import cartEmpty from "./cartEmpty";
+import search from "./search";
 
 let cart = {
   data: function() {
     return {
       urlBasketData: "./getBasket.json",
-      urlBasketAdd: "./addToBasket.json", //TODO Заменить на один адрес с разными параметрами действия (del/add)
-      urlBasketDel: "./delFromBasket.json",
+      urlBasketChange: "./changeItemsInCart.json",
       imageCart: "https://placehold.it/100x80",
       isVisible: false,
       vItems: [],
@@ -26,33 +25,18 @@ let cart = {
         this.countGoods = data.countGoods;
       });
     },
-    addItemToCart(event) {
-      //TODO Обработка ошибки: через data.result=0 или через .then ... error???
-      this.$root.postReq(this.urlBasketAdd, event.target).then(
+    changeItemsInCart(event) {
+      this.$root.postReq(this.urlBasketChange, event.target).then(
         data => {
           if (data.result == 1) {
             this.vItems = data.cart.contents;
             this.amount = data.cart.amount;
             this.countGoods = data.cart.countGoods;
           } else if (data.result == 0) {
-            console.log(`Error adding good to cart: ${data.error}`);
+            console.log(`Error ${event.target.id}: ${data.error}`);
           }
         },
-        error => console.log(`addItemToCart error= ${error}`)
-      );
-    },
-    delItemFromCart(event) {
-      this.$root.postReq(this.urlBasketDel, event.target).then(
-        data => {
-          if (data.result == 1) {
-            this.vItems = data.cart.contents;
-            this.amount = data.cart.amount;
-            this.countGoods = data.cart.countGoods;
-          } else if (data.result == 0) {
-            console.log(`Error deleting good from cart: ${data.error}`);
-          }
-        },
-        error => console.log(`delItemFromCart error= ${error}`)
+        error => console.log(`${event.target.id} error= ${error}`)
       );
     },
     getItemInCartById(id) {
@@ -82,8 +66,8 @@ let cart = {
   components: {
     "cart-item": cartItem,
     "cart-empty": cartEmpty,
-    search
-  }
+    search,
+  },
 };
 
 export default cart;

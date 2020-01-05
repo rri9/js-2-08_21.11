@@ -13,17 +13,12 @@ app.use("/", express.static("public"));
 app.get("/catalogData.json", (req, res) => {
   handler.get(res, "server/responses/catalogData.json");
 });
-
 app.get("/getBasket.json", (req, res) => {
   handler.get(res, "server/responses/getBasket.json");
 });
 
-app.post("/addToBasket.json", (req, res) => {
-  handler.post(req, res, "server/responses/getBasket.json", "add");
-});
-
-app.post("/delFromBasket.json", (req, res) => {
-  handler.post(req, res, "server/responses/getBasket.json", "del");
+app.post("/changeItemsInCart.json", (req, res) => {
+  handler.post(req, res, "server/responses/getBasket.json");
 });
 
 app.listen(3000, () => {

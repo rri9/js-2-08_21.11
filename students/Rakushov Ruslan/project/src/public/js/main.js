@@ -33,7 +33,6 @@ let app = {
           };
           xhr.timeout = 10000;
           xhr.open("GET", this.urlAPI + url, true);
-          // xhr.open("GET", url, true);  //same server - don't need full address
           xhr.send();
         }, 1500);
       });
@@ -51,7 +50,6 @@ let app = {
             if (xhr.status == 200) {
               resolve(JSON.parse(xhr.responseText));
             } else {
-              console.log(xhr.status);
               reject(xhr.status);
             }
           }
@@ -59,7 +57,7 @@ let app = {
         xhr.timeout = 10000;
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-        xhr.send(`{"id": ${data.dataset["id"]}}`);
+        xhr.send(`{"id": ${data.dataset["id"]}, "action": "${data.id}"}`);
       });
     },
     mounted() {

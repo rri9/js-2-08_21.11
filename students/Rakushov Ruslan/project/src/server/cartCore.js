@@ -2,7 +2,7 @@ const catalogCore = require("./catalogCore");
 const logger = require("./logger");
 
 const cartCore = {
-  add(data, id) {
+  addItemToCart(data, id) {
     const cart = JSON.parse(data);
     let find = cart.contents.find(item => item.id === id);
     if (find) {
@@ -20,7 +20,7 @@ const cartCore = {
     logger("add", id);
     return JSON.stringify(cart, null, 2);
   },
-  del(data, id) {
+  delItemFromCart(data, id) {
     const cart = JSON.parse(data);
     const delItemId = id;
     let find = cart.contents.find(item => item.id === delItemId);
@@ -29,7 +29,7 @@ const cartCore = {
     }
     recountCart(cart);
     logger("del", id);
-    return JSON.stringify(cart, null, 2);;
+    return JSON.stringify(cart, null, 2);
   },
 };
 

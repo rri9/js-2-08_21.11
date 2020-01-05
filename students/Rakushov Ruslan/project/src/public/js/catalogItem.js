@@ -7,11 +7,12 @@ let catalogItem = {
         <h3>{{item.title}}</h3>
         <p>{{item.price}} руб.</p>
         <button class="buy-btn" 
+          id="addItemToCart"
           :data-id="item.id"
           :data-name="item.title"
           :data-image="img"
           :data-price="item.price"
-          @click="$root.$refs.cart.addItemToCart"
+          @click="$root.$refs.cart.changeItemsInCart"
         >
           Купить
         </button>

@@ -11,12 +11,12 @@ const handler = {
       }
     });
   },
-  post(req, res, file, action) {
+  post(req, res, file) {
     fs.readFile(file, "utf-8", (err, data) => {
       if (err) {
         res.send('{"result": 0}');
       } else {
-        data = cartCore[action](data, req.body.id);
+        data = cartCore[req.body.action](data, req.body.id);
         fs.writeFile(file, data, errW => {
           if (errW) {
             res.send(`{"result": 0, "error": ${errW}}`);
